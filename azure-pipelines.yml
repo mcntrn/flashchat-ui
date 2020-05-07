@@ -15,6 +15,11 @@ variables:
 steps:
 
 - script: |
+    shortversion=$(echo $(tag) | cut -c1-7)
+    echo "##vso[task.setvariable variable=shortversion]$shortversion"
+  displayName: 'Get short commit id'
+
+- script: |
     npm install
     npm run build
   displayName: 'npm install and build'
