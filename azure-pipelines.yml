@@ -19,11 +19,11 @@ steps:
     npm run build
   displayName: 'npm install and build'
 
-# - task: Docker@2
-#   displayName: Build and push an image
-#   inputs:
-#     containerRegistry: 'dockerhub-mcntrn'
-#     repository: 'mcntrn/flashchat-ui'
-#     command: 'buildAndPush'
-#     Dockerfile: '**/Dockerfile'
-#     tags: '$(shortversion)'
+- task: Docker@2
+  displayName: Build and push an image
+  inputs:
+    containerRegistry: 'dockerhub-mcntrn'
+    repository: 'mcntrn/flashchat-ui'
+    command: 'buildAndPush'
+    Dockerfile: '**/Dockerfile'
+    tags: '$(shortversion)'
