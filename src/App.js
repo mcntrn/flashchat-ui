@@ -3,11 +3,22 @@ import React from 'react';
 import Topbar from './Topbar'
 import MessageListContainer from './MessageListContainer';
 import MessageInput from './MessageInput'
+import { makeStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
+
 
 import { gql } from "apollo-boost";
 import { useQuery } from '@apollo/react-hooks';
 
+const useStyles = makeStyles((theme) => ({
+    root: {
+      flexGrow: 1,
+    },
+  }));
+
 function App() {
+
+    const classes = useStyles();
 
     const MESSAGES_QUERY = gql`
     query {
@@ -32,27 +43,35 @@ function App() {
     if (error) return <p>Error :(</p>;
 
     return (
-        <div>
-            <Topbar />
+        <div className={classes.root}>
+        <Grid container spacing={3}>
+        <Grid container item xs={12} spacing={3}>
+            <Topbar/>
+        </Grid>
+        <Grid container item xs={12} spacing={3}>
             <MessageListContainer messages={data.messages}
-                subscribeToNewComments={() =>
-                    subscribeToMore({
-                        document: MESSAGE_SUBSCRIPTION,
-                        variables: {},
-                        updateQuery: (prev, { subscriptionData }) => {
-                            if (!subscriptionData.data) return prev;
-                            const newMessage = subscriptionData.data.message;
+                    subscribeToNewComments={() =>
+                        subscribeToMore({
+                            document: MESSAGE_SUBSCRIPTION,
+                            variables: {},
+                            updateQuery: (prev, { subscriptionData }) => {
+                                if (!subscriptionData.data) return prev;
+                                const newMessage = subscriptionData.data.message;
 
-                            return Object.assign({}, prev, {
-                                messages: prev.messages.concat(newMessage)
-                            });
-                        }
-                    })
-                }
-            />
+                                return Object.assign({}, prev, {
+                                    messages: prev.messages.concat(newMessage)
+                                });
+                            }
+                        })
+                    }
+                />
+        </Grid>
+        <Grid container item xs={12} spacing={3}>
             <MessageInput />
-        </div>
-
+        </Grid>
+      </Grid>
+      </div>
+      
     )
 }
 

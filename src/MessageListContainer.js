@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   },
   gridList: {
     width: 500,
-    height: 650,
+    height: 600,
   },
 }));
 

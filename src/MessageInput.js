@@ -6,6 +6,7 @@ import IconButton from '@material-ui/core/IconButton';
 import TextField from '@material-ui/core/TextField';
 import { gql } from "apollo-boost";
 import { useMutation } from '@apollo/react-hooks';
+import Paper from '@material-ui/core/Paper';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -18,9 +19,9 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: 'space-around',
     },
     paper: {
-      padding: theme.spacing(2),
-      textAlign: 'center',
-      color: theme.palette.text.secondary,
+        width: 500,
+        padding: theme.spacing(2),
+        color: theme.palette.text.secondary,
     },
 }));
 
@@ -52,27 +53,26 @@ function MessageInput() {
 
     return (
         <div className={classes.root}>
-        <Grid container 
-          spacing={0}
-          direction="column"
-          alignItems="center"
-          justify="center">
-          <Grid item xs={12}>
-            <TextField
-                id="standard-multiline-flexible"
-                label="Message"
-                multiline
-                rowsMax={8}
-                value={value}
-                onChange={handleChange}
+        <Paper className={classes.paper}>
+        <Grid container xs={12}>
+          <Grid container item xs={10}>
+          <TextField
+            id="standard-multiline-flexible"
+            multiline
+            fullWidth
+            rowsMax={2}
+            value={value}
+            onChange={handleChange}
             />
+            </Grid>
+            <Grid container item xs={2}>
             <IconButton color="primary" onClick={handleSubmit}  aria-label="delete" className={classes.margin}>
                 <Send fontSize="small" />
             </IconButton>
           </Grid>
-
         </Grid>
-      </div>
+        </Paper>
+        </div>
     );
 }
 export default MessageInput;
