@@ -14,12 +14,8 @@ const useStyles = makeStyles((theme) => ({
         flexGrow: 1,
         overflow: 'hidden',
         padding: theme.spacing(0, 3),
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'space-around',
     },
     paper: {
-        width: 500,
         padding: theme.spacing(2),
         color: theme.palette.text.secondary,
     },
@@ -55,7 +51,8 @@ function MessageInput() {
         <div className={classes.root}>
         <Paper className={classes.paper}>
         <Grid container xs={12}>
-          <Grid container item xs={10}>
+          <Grid container item xs={3}></Grid>
+          <Grid container item xs={6}>
           <TextField
             id="standard-multiline-flexible"
             multiline
@@ -65,7 +62,7 @@ function MessageInput() {
             onChange={handleChange}
             />
             </Grid>
-            <Grid container item xs={2}>
+            <Grid container item xs={3}>
             <IconButton color="primary" onClick={handleSubmit}  aria-label="delete" className={classes.margin}>
                 <Send fontSize="small" />
             </IconButton>

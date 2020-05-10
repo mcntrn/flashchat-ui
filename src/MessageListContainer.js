@@ -23,11 +23,10 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2),
   },
   gridList: {
-    width: 500,
-    height: 600,
+    // width: 500,
+    // height: '40%',
   },
 }));
-
 
 const MessageListContainer = (props) => {
   
@@ -57,9 +56,15 @@ const MessageListContainer = (props) => {
 
   return (
     <div className={classes.root}>
+      <Grid container xs={12}>
+      <Grid container item xs={3}></Grid>
+      <Grid container item xs={6}>
         <GridList cellHeight='auto' className={classes.gridList} cols={1}>
         {rows}
-        </GridList>    
+        </GridList>
+      </Grid>
+      <Grid container item xs={3}></Grid>
+      </Grid>  
     </div>
   );
 }

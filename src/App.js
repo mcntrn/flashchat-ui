@@ -5,6 +5,8 @@ import MessageListContainer from './MessageListContainer';
 import MessageInput from './MessageInput'
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
+
 
 
 import { gql } from "apollo-boost";
@@ -43,12 +45,13 @@ function App() {
     if (error) return <p>Error :(</p>;
 
     return (
-        <div className={classes.root}>
-        <Grid container spacing={3}>
-        <Grid container item xs={12} spacing={3}>
+        <div>
+        <Topbar/>
+        <Grid container>
+        {/* <Grid container item xs={12}>
             <Topbar/>
-        </Grid>
-        <Grid container item xs={12} spacing={3}>
+        </Grid> */}
+        <Grid container item xs={12}>
             <MessageListContainer messages={data.messages}
                     subscribeToNewComments={() =>
                         subscribeToMore({
@@ -66,7 +69,7 @@ function App() {
                     }
                 />
         </Grid>
-        <Grid container item xs={12} spacing={3}>
+        <Grid container item xs={12}>
             <MessageInput />
         </Grid>
       </Grid>
