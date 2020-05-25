@@ -26,7 +26,7 @@ function MessageInput() {
     const SEND_MESSAGE = gql`
     mutation SendMessage($text: String!) {
         sendMessage(text: $text) {
-        id
+        _id
         text
         }
     }`;

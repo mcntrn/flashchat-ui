@@ -14,15 +14,15 @@ import { split } from 'apollo-link';
 import { getMainDefinition } from 'apollo-utilities';
 
 const httpLink = new HttpLink({
-    //uri: 'http://localhost:8080/graphql',
+    //uri: 'http://localhost:4000/graphql',
     uri: '/service/graphql',
     credentials: 'same-origin'
 })
 
 // Create a WebSocket link:
 const wsLink = new WebSocketLink({
-    //uri: `ws://localhost:8080/subscriptions`,
-    uri: `wss://mcntrn.com/service/subscriptions`,
+    //uri: `ws://localhost:4000/graphql`,
+    uri: `wss://mcntrn.com/service/graphql`,
     options: {
         reconnect: true
     }

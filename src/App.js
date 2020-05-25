@@ -25,7 +25,7 @@ function App() {
     const MESSAGES_QUERY = gql`
     query {
         messages {
-            id
+            _id
             text
         }
     }`;
@@ -33,7 +33,7 @@ function App() {
     const MESSAGE_SUBSCRIPTION = gql`
     subscription {
         message {
-          id
+          _id
           text
         }
     }`;
