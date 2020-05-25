@@ -1,19 +1,32 @@
 import React, { useState } from 'react';
-import {
-    InputGroup,
-    InputGroupAddon,
-    Input,
-    Button
-} from 'reactstrap';
+import Grid from '@material-ui/core/Grid';
+import { makeStyles } from '@material-ui/core/styles';
+import { Send } from '@material-ui/icons';
+import IconButton from '@material-ui/core/IconButton';
+import TextField from '@material-ui/core/TextField';
 import { gql } from "apollo-boost";
 import { useMutation } from '@apollo/react-hooks';
+import Paper from '@material-ui/core/Paper';
+
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        flexGrow: 1,
+        overflow: 'hidden',
+        padding: theme.spacing(0, 3),
+    },
+    paper: {
+        padding: theme.spacing(2),
+        color: theme.palette.text.secondary,
+    },
+}));
 
 function MessageInput() {
 
     const SEND_MESSAGE = gql`
     mutation SendMessage($text: String!) {
         sendMessage(text: $text) {
-        id
+        _id
         text
         }
     }`;
@@ -21,6 +34,8 @@ function MessageInput() {
     const [sendMessage, { data }] = useMutation(SEND_MESSAGE, {});
 
     const [value, setValue] = useState(' ');
+
+    const classes = useStyles();
 
     function handleSubmit(event) {
         // console.log('you sent it:' + value);
@@ -33,15 +48,28 @@ function MessageInput() {
     }
 
     return (
-        <div>
-            <br />
-            <InputGroup>
-                <Input type="text" value={value} onChange={handleChange} />
-                <InputGroupAddon addonType="prepend"><Button onClick={handleSubmit} >Send</Button></InputGroupAddon>
-            </InputGroup>
-            <br />
+        <div className={classes.root}>
+        <Paper className={classes.paper}>
+        <Grid container xs={12}>
+          <Grid container item xs={3}></Grid>
+          <Grid container item xs={6}>
+          <TextField
+            id="standard-multiline-flexible"
+            multiline
+            fullWidth
+            rowsMax={2}
+            value={value}
+            onChange={handleChange}
+            />
+            </Grid>
+            <Grid container item xs={3}>
+            <IconButton color="primary" onClick={handleSubmit}  aria-label="delete" className={classes.margin}>
+                <Send fontSize="small" />
+            </IconButton>
+          </Grid>
+        </Grid>
+        </Paper>
         </div>
     );
-
 }
 export default MessageInput;
