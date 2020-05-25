@@ -14,15 +14,23 @@ import { split } from 'apollo-link';
 import { getMainDefinition } from 'apollo-utilities';
 
 const httpLink = new HttpLink({
-    //uri: 'http://localhost:4000/graphql',
-    uri: '/service/graphql',
+    uri: '/graphql',
     credentials: 'same-origin'
 })
 
+// Temporary workaround for WS proxy
+const getWsUri = () => {
+    const t = window.location.hostname
+    const p = process.env.NODE_ENV
+    if(process.env.NODE_ENV === "development"){
+        return `ws://localhost:4000/graphql`
+    }
+    return `wss://${t}/graphql`
+}
+
 // Create a WebSocket link:
 const wsLink = new WebSocketLink({
-    //uri: `ws://localhost:4000/graphql`,
-    uri: `wss://mcntrn.com/service/graphql`,
+    uri: getWsUri(),
     options: {
         reconnect: true
     }
