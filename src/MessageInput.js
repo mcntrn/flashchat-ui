@@ -16,7 +16,9 @@ const useStyles = makeStyles((theme) => ({
         padding: theme.spacing(0, 3),
     },
     paper: {
-        padding: theme.spacing(2),
+        maxWidth: 400,
+        margin: `${theme.spacing(2)}px auto`,
+        padding: theme.spacing(3),
         color: theme.palette.text.secondary,
     },
 }));
@@ -48,10 +50,9 @@ function MessageInput() {
 
     return (
         <div className={classes.root}>
-            <Paper className={classes.paper}>
-                <Grid container xs={12}>
-                    <Grid container item xs={3}></Grid>
-                    <Grid container item xs={6}>
+            <Paper elevation={3} className={classes.paper}>
+                <Grid container>
+                    <Grid item xs={10}>
                         <TextField
                             id="standard-multiline-flexible"
                             multiline
@@ -61,7 +62,7 @@ function MessageInput() {
                             onChange={handleChange}
                         />
                     </Grid>
-                    <Grid container item xs={3}>
+                    <Grid item xs={2}>
                         <IconButton color="primary" onClick={handleSubmit} aria-label="delete" className={classes.margin}>
                             <Send fontSize="small" />
                         </IconButton>
