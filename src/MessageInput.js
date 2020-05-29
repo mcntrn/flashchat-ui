@@ -38,7 +38,6 @@ function MessageInput() {
     const classes = useStyles();
 
     function handleSubmit(event) {
-        // console.log('you sent it:' + value);
         sendMessage({ 'variables': { 'text': value } });
         setValue(' ');
     }
@@ -49,26 +48,26 @@ function MessageInput() {
 
     return (
         <div className={classes.root}>
-        <Paper className={classes.paper}>
-        <Grid container xs={12}>
-          <Grid container item xs={3}></Grid>
-          <Grid container item xs={6}>
-          <TextField
-            id="standard-multiline-flexible"
-            multiline
-            fullWidth
-            rowsMax={2}
-            value={value}
-            onChange={handleChange}
-            />
-            </Grid>
-            <Grid container item xs={3}>
-            <IconButton color="primary" onClick={handleSubmit}  aria-label="delete" className={classes.margin}>
-                <Send fontSize="small" />
-            </IconButton>
-          </Grid>
-        </Grid>
-        </Paper>
+            <Paper className={classes.paper}>
+                <Grid container xs={12}>
+                    <Grid container item xs={3}></Grid>
+                    <Grid container item xs={6}>
+                        <TextField
+                            id="standard-multiline-flexible"
+                            multiline
+                            fullWidth
+                            rowsMax={2}
+                            value={value}
+                            onChange={handleChange}
+                        />
+                    </Grid>
+                    <Grid container item xs={3}>
+                        <IconButton color="primary" onClick={handleSubmit} aria-label="delete" className={classes.margin}>
+                            <Send fontSize="small" />
+                        </IconButton>
+                    </Grid>
+                </Grid>
+            </Paper>
         </div>
     );
 }
